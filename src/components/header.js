@@ -2,6 +2,8 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import styled, {css} from 'styled-components'
+import oceanitLogo from "../images/oceanit_logo_color_horizontal.svg"
+
 
 const Button = styled.button`
   background: transparent;
@@ -19,20 +21,30 @@ const Button = styled.button`
   }
 `
 
-// const Header = styled.div`
-//   background-color: yellow;
-// `
+const StyledH1 = styled.h1`
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  color: #32325d;
+  a{
+    color: #32325d;
+    text-decoration: none;
+  }
+`
+
 
 const Header = ({ className, children, siteTitle }) => (
   <header className={className}>
-    <div>
-      <h1 >
+    <Container>
+      <StyledLogo src={oceanitLogo} />
+      <StyledH1 >
         <Link to="/">
-          {siteTitle}
+          
         </Link>
-      </h1>
-    </div>
-    <Button> I'm a button! </Button>
+      </StyledH1>
+    </Container>
+    {/* <Button> I'm a button! </Button> */}
   </header>
 )
 
@@ -44,14 +56,46 @@ Header.defaultProps = {
   siteTitle: ``,
 }
 
+const StyledLogo = styled.img`
+  height: 32px;
+  margin: 16px;
+`
+
+const Container = styled.div`
+  /*background-color: red;*/
+  max-width: 1040px;
+  width: 100%;
+  display: flex;
+
+`
 
 const StyledHeader = styled(Header)`
   backdrop-filter: saturate(180%) blur(7px);
   background-color: rgba(255,255,255,0.7);
-  
-  padding: 20px;
+  margin-bottom: 48px;
+  /*padding: 20px;*/
   position: sticky;
   top: 0;
+  //crop line height
+  display: flex;
+  justify-content: center;
+  &::before {
+    margin-top: -10px;
+    content: "";
+  }
+
+  //this is the bottom gray border
+  &::after {
+    left: 0;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 1px;
+    z-index: 1;
+    background-color: rgba(29,29,31,0.1);
+  }
 `
 
 
